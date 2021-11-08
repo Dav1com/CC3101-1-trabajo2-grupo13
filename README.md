@@ -1,6 +1,6 @@
 # CC3101-1-trabajo2-grupo13
 
-Ya que no nunca supimos si se podía hacer en C++, lo tradujimos a Python, ambos archivos están hechos para ejecutar la implementación de la parte (d)
+Ya que nunca supimos si se podía hacer en C++, lo tradujimos a Python, ambos archivos están hechos para ejecutar la implementación de la parte (d)
 
 Para ejecutar la versión en C++ se puede usar:
 ```console
