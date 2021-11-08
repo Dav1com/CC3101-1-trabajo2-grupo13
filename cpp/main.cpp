@@ -60,17 +60,16 @@ ll T(ll m) {
 }
 
 ll T_tabulacion(ll m) {
-    vector<vector<ll>> tabla(m+1);
-    for (ll k = 0; k <= m; ++k) {
-        tabla[k] = vector<ll>(k+1);
-        tabla[k][0] = 1;
-    }
+    vector<vector<ll>> tabla(2, vector<ll>(m+1));
+    tabla[0][0] = 1;
+    tabla[1][0] = 1;
     for (ll k = 1; k <= m; ++k) {
         for (ll n = 1; n < k; ++n)
-            tabla[k][n] = tabla[k-1][n-1] + tabla[k][n-1] + tabla[k-1][n];
-        tabla[k][k] = tabla[k-1][k-1] + tabla[k][k-1];
+            tabla[1][n] = tabla[0][n-1] + tabla[1][n-1] + tabla[0][n];
+        tabla[1][k] = tabla[0][k-1] + tabla[1][k-1];
+        swap(tabla[0], tabla[1]);
     }
-    return tabla[m][m];
+    return tabla[0][m];
 }
 
 void parteB() {
@@ -92,7 +91,7 @@ void parteB() {
 int main() {
     ios::sync_with_stdio(0); cin.tie(0);
 
-    ll mm = 53;
+    ll mm = 10000;
     ll ans;
     //ans = T(mm);
     //ans = T_memoizacion(mm);
