@@ -54,13 +54,14 @@ def T(k: int, n: int) -> int:
 
 def T_tabulacion(m: int) -> int:
     """ Función para contar todas las combinaciones de letras validas, iterativamente, usando tabulación. """
-    tabla = np.empty([m+1, m+1], dtype=np.uint64)
-    tabla[:,0] = np.ones(m+1, dtype=np.uint64)
+    tabla = np.empty([2, m+1], dtype=np.uint64)
+    tabla[:,0] = np.ones(2, dtype=np.uint64)
     for k in range(1,m+1):
         for n in range(1, k):
-            tabla[k, n] = tabla[k-1,n-1] + tabla[k,n-1] + tabla[k-1,n]
-        tabla[k, k] = tabla[k-1,k-1] + tabla[k,k-1]
-    return tabla[m,m]
+            tabla[1, n] = tabla[0,n-1] + tabla[1,n-1] + tabla[0,n]
+        tabla[1, k] = tabla[0,k-1] + tabla[1,k-1]
+        tabla[[0, 1]] = tabla[[1, 0]]
+    return tabla[0,m]
 
 # Tests
 #assert T_tabulacion(0) == T(0,0)
@@ -100,5 +101,5 @@ def permormanceTest(mm: int) -> None:
 if __name__ == "__main__":
     sys.setrecursionlimit(1000)
 
-    mm = int(8)
+    mm = int(100)
     print(f"Existen {T_tabulacion(mm)} partidos posibles.")
